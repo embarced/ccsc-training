@@ -41,12 +41,17 @@ class GameTest {
         assertEquals(20, game.getScore());
     }
 
-//    @Test
-//    void can_roll_spare() {
-//        game.roll(5);
-//        game.roll(5); // spare
-//        game.roll(3);
-//        rollMany(17, 0);
-//        assertEquals(16, game.getScore());
-//    }
+    @Test
+    void can_roll_one_spare() {
+        rollSpare();
+        game.roll(3);
+        rollMany(17, 0);
+        assertEquals(16, game.getScore());
+    }
+
+    private void rollSpare() {
+        game.roll(5);
+        game.roll(5);
+    }
+
 }
