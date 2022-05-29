@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * TODOs
  *
  * 1. Test: can roll gutter (no pins at all) (/)
- * 2. Test: can roll One's 20 times
+ * 2. Test: can roll One's 20 times (/)
  * 3. Test: Spare
  * 4. Test: Strike
  * 5. Test: Perfect Match
@@ -23,6 +23,15 @@ class GameTest {
             game.roll(0);
         }
         Assertions.assertEquals(0, game.getScore());
+    }
+
+    @Test
+    void can_roll_all_ones() {
+        Game game = new Game();
+        for (int i = 0; i < 20; i++) {
+            game.roll(1);
+        }
+        Assertions.assertEquals(20, game.getScore());
     }
 
 }
