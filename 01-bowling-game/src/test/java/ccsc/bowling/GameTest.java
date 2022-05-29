@@ -54,4 +54,16 @@ class GameTest {
         game.roll(5);
     }
 
+    @Test
+    void can_roll_one_strike() {
+        rollStrike();
+        game.roll(3);
+        game.roll(4);
+        rollMany(16, 0);
+        assertEquals(24, game.getScore());
+    }
+
+    private void rollStrike() {
+        game.roll(10);
+    }
 }
