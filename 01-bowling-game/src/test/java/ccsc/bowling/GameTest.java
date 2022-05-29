@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p>
  * 1. Test: can roll gutter (no pins at all) (/)
  * 2. Test: can roll One's 20 times (/)
- * 3. Test: Spare
- * 4. Test: Strike
- * 5. Test: Perfect Match
+ * 3. Test: Spare (/)
+ * 4. Test: Strike (/)
+ * 5. Test: Perfect Match (/)
  */
 class GameTest {
 
@@ -65,5 +65,11 @@ class GameTest {
 
     private void rollStrike() {
         game.roll(10);
+    }
+
+    @Test
+    void can_play_perfect_game() {
+        rollMany(12, 10);
+        assertEquals(300, game.getScore());
     }
 }
