@@ -17,6 +17,7 @@ class GameTest {
 
     @Test
     void can_create_game() {
-        assertTrue(true);
+        Game game = new Game();
+        assertNotNull(game);
     }
 }
