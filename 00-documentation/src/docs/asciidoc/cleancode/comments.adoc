@@ -1,0 +1,356 @@
+== Kommentare
+
+=== Schlechte Kommentare
+
+Gemurmel (Mumbling):
+
+* Message unklar
+* Autor versucht etwas zu sagen, kommt allerdings nicht durch
+* Als Notiz (weil komme später nochmals zu dieser Stelle) des Autors
+
+Überflüssige/Redundante Kommentare (Redundant comments):
+
+* Länger Kommentar zu lesen als Code
+
+Irreführende Kommentare (Misleading comments):
+
+* Unpräziser/falscher Kommentar
+* z. B. einer Funktion, gibt nicht zurück was im Kommentar steht
+
+Verpflichtende Kommentare (Mandated comments):
+
+* Falsche Regeln (Funktionen, Variablen müssen Kommentare haben)
+* Stiften Unordnung und Verwirrung:
+
+
+Versions-Kommentare (Journal comments):
+
+* Journale, Logs zum Code
+* Heutzutage unnötig (Versionsverwaltungs-Systeme)
+
+Rauschen (Noise comments):
+
+* Wiedergeben von offensichtlichen Informationen
+* Nichts als Rauschen
+* Werden mit der Zeit ignoriert und veralten
+
+=== Gute Kommentare
+
+Rechtliche Kommentare/Anmerkungen (Legal comments):
+
+* Copyright und Autoren Mitteilungen
+* Besser: auf Standard oder externes Dokument verweisen
+
+Informative Kommentare (Informative comments):
+
+* Sinnvoll, z.B. Rückgabetyp einer Funktion
+* Besser: Name der Funktion enthält Information
+
+Erklärung der Absicht (Explanation of intent):
+
+* Informationen über Implementation und besonders der spezifischen Absicht
+* Besser: Wenn möglich Code umstrukturieren, („man weiss immerhin was die Absicht war“)
+
+Erläuterungen/Klarstellung (Clarification):
+
+* Erklärungen unklaren/vernebelte Argumente
+* Beachte: klare und präzise Schreibweise, ansonsten schnell verwirrt
+
+Warnungen (Warning of consequences):
+
+* Warne Kollegen vor gewissen Konsequenzen
+* Beachte: teils aus dem veraltetem Grund
+
+TODO-Kommentare (TODO-Comments):
+* Z.B. wie Funktion in Zukunft/Absicht aussehen sollte
+* Beachte: IDE´s bieten Features, diese aktuell zu halten/einfach zu finden und löschen
+
+Verstärkungen (Amplification):
+
+* Signalisiert Wichtigkeit, welche sonst übersehen würde (Javadocs)
+* Beachte: klar, präzise und gerechtfertigt
+
+=== Beispiele
+
+.*Redundant comment* 👎 und *Closing brace comment* 👎
+[source,java,linenums]
+----
+// Utility method that returns when this.closed is true. Throws an exception
+// if the timeout is reached.
+public synchronized void waitForClose(final long timeoutMillis) throws Exception {
+    if (!closed) {
+        wait(timeoutMillis);
+        if (!closed)
+            throw new Exception("MockResponseSender could not be closed");
+	} // if statement
+}
+----
+
+.Legal comment (2, 10) 👍, noise comment (16) 👎, Position marker (20) 👎, Informative/clarification comment (24) 👍
+[source,java,linenums]
+----
+/*
+ * Copyright (C) 2001-2011
+ */
+package backend.util.constants;
+
+import java.math.BigDecimal;
+
+/**
+ *
+ * @version 0.1
+ */
+public final class ApplicationConstants extends ApplicationConstantsCore {
+
+    /**
+     * private constructor for constants class.
+     */
+    private ApplicationConstants() {
+        // nothing to do.
+    }
+
+    /**
+     * constants for calendar markers.
+     */
+    public static final String JIRA_ACTIVE_STATES = "application.jira.activeStates";
+    public static final String MARKER_LEAVE = "application.tt.calendar.marker.leave";
+}
+----
+
+.Besser im Code ausdrücken 👎👍
+[source,java,linenums]
+----
+// Check to see if the employee is eligible for full benefits
+if ((employee.flags & HOURLY_FLAG) &&
+	(employee.age > 65))
+
+    // vs.
+
+if (employee.isEligibleForFullBenefits())
+----
+
+.Lizenzbezogene Kommentare 👍
+[source,java,linenums]
+----
+// Copyright (C) 2003,2004,2005 by Object Mentor, Inc. All rights reserved.
+// Released under the terms of the GNU General Public License version 2 or later.
+----
+
+.Informative Kommentare 👍
+[source,java,linenums]
+----
+// Returns an instance of the Responder being tested.
+protected abstract Responder responderInstance();
+
+// format matched kk:mm:ss EEE, MMM dd, yyyy
+Pattern timeMatcher = Pattern.compile("\\d*:\\d*:\\d* \\w*, \\w* \\d*, \\d*");
+----
+
+.Klärung der Intention 👍
+[source,java,linenums]
+----
+public int compareTo(Object o) {
+    if(o instanceof WikiPagePath) {
+        WikiPagePath p = (WikiPagePath) o;
+        String compressedName = StringUtil.join(names, "");
+        String compressedArgumentName = StringUtil.join(p.names, "");
+        return compressedName.compareTo(compressedArgumentName);
+    }
+    return 1; // we are greater because we are the right type.
+}
+
+
+// This is our best attempt to get a race condition
+// by creating large number of threads.
+for (int i = 0; i < 25000; i++) {
+    WidgetBuilderThread widgetBuilderThread = new WidgetBuilderThread(widgetBuilder, text, parent, failFlag);
+    Thread thread = new Thread(widgetBuilderThread);
+    thread.start();
+}
+assertEquals(false, failFlag.get());
+
+
+assertTrue(a.compareTo(b) == -1); // a < b
+assertTrue(b.compareTo(a) == 1); // b > a
+
+----
+
+.TODO-Kommentare 👍👎
+[source,java,linenums]
+----
+// TODO-MdM these are not needed
+// We expect this to go away when we do the checkout model
+protected VersionInfo makeVersion() throws Exception {
+    return null;
+}
+----
+
+.Missbrauch von Exceptions zur Steuerung, erklärender Kommentar macht es nicht besser 👎
+[source,java,linenums]
+----
+public void loadProperties() {
+    try {
+        String propertiesPath = propertiesLocation + "/" + PROPERTIES_FILE;
+        FileInputStream propertiesStream = new FileInputStream(propertiesPath);
+        loadedProperties.load(propertiesStream);
+    } catch(IOException e) {
+        // No properties files means all defaults are loaded
+    }
+}
+----
+
+.Redundante Kommentare 👎
+[source,java,linenums]
+----
+// Utility method that returns when this.closed is true. Throws an exception
+// if the timeout is reached.
+public synchronized void waitForClose(final long timeoutMillis) throws Exception {
+    if(!closed) {
+        wait(timeoutMillis);
+        if(!closed)
+            throw new Exception("MockResponseSender could not be closed");
+    }
+}
+----
+
+.Erzwungene/Geforderte Kommentare 👎
+[source,java,linenums]
+----
+/**
+ *
+ * @param title The title of the CD
+ * @param author The author of the CD
+ * @param tracks The number of tracks on the CD
+ * @param durationInMinutes The duration of the CD in minutes
+ */
+public void addCD(String title, String author, int tracks, int durationInMinutes) {
+    CD cd = new CD();
+    cd.title = title;
+    cd.author = author;
+    cd.tracks = tracks;
+    cd.duration = duration;
+    cdList.add(cd);
+}
+----
+
+.Change-Log Kommentare 👎
+[source,java,linenums]
+----
+/**
+ * Changes (from 11-Oct-2001)
+ * --------------------------
+ * 11-Oct-2001 : Re-organised the class and moved it to new package
+ * com.jrefinery.date (DG);
+ * 05-Nov-2001 : Added a getDescription() method, and eliminated NotableDate
+ * class (DG);
+ * 12-Nov-2001 : IBD requires setDescription() method, now that NotableDate
+ * class is gone (DG); Changed getPreviousDayOfWeek(),
+ * getFollowingDayOfWeek() and getNearestDayOfWeek() to correct
+ * bugs (DG);
+ * 05-Dec-2001 : Fixed bug in SpreadsheetDate class (DG);
+ * 29-May-2002 : Moved the month constants into a separate interface
+ * (MonthConstants) (DG);
+ * 27-Aug-2002 : Fixed bug in addMonths() method, thanks to N???levka Petr (DG);
+ * 03-Oct-2002 : Fixed errors reported by Checkstyle (DG);
+ * 13-Mar-2003 : Implemented Serializable (DG);
+ * 29-May-2003 : Fixed bug in addMonths method (DG);
+ * 04-Sep-2003 : Implemented Comparable. Updated the isInRange javadocs (DG);
+ * 05-Jan-2005 : Fixed bug in addYears() method (1096282) (DG)
+ */
+----
+
+.Erklärende Kommentare 👎 besser durch erklärenden Code ersetzen 👍
+[source,java,linenums]
+----
+// does the module from the global list <mod> depend on the
+// subsystem we are part of?
+if (smodule.getDependSubsystems().contains(subSysMod.getSubSystem())) {
+    ...
+}
+
+vs.
+
+ArrayList moduleDependees = smodule.getDependSubsystems();
+String ourSubSystem = subSysMod.getSubSystem();
+if (moduleDependees.contains(ourSubSystem)) {
+    ...
+}
+----
+
+.Markierung von bestimmten Stellen 👎
+[source,java,linenums]
+----
+// Actions //////////////////////////////////
+----
+
+.Kommentare für schliessende Klammern 👎
+[source,java,linenums]
+----
+while ((line = in.readLine()) != null) {
+    lineCount++;
+    charCount += line.length();
+    String words[] = line.split("\\W");
+    wordCount += words.length;
+} //while
+
+System.out.println("wordCount = " + wordCount);
+System.out.println("lineCount = " + lineCount);
+System.out.println("charCount = " + charCount);
+----
+
+.Auskommentierter Code 👎
+[source,java,linenums]
+----
+InputStreamResponse response = new InputStreamResponse();
+response.setBody(formatter.getResultStream(), formatter.getByteCount());
+// InputStream resultsStream = formatter.getResultStream();
+// StreamReader reader = new StreamReader(resultsStream);
+// response.setContent(reader.read(formatter.getByteCount()));
+----
+
+.Erzwungene, sinnlose Kommentare 👎
+[source,java,linenums]
+----
+/**
+* Default constructor.
+*/
+protected AnnualDateRule() {
+}
+
+/** The day of the month. */
+private int dayOfMonth;
+
+/** The name. */
+private String name;
+
+/** The version. */
+private String version;
+
+/**
+ * Returns the day of the month.
+ *
+ * @return the day of the month.
+ */
+public int getDayOfMonth() {
+    ...
+}
+----
+
+.HTML-Kommentare 👎
+[source,java,linenums]
+----
+/**
+ * Task to run fit tests.
+ * This task runs fitnesse tests and publishes the results.
+ * <p/>
+ * <pre>
+ * Usage:
+ * &lt;taskdef name=&quot;execute-fitnesse-tests&quot;
+ * classname=&quot;fitnesse.ant.ExecuteFitnesseTestsTask&quot;
+ * classpathref=&quot;classpath&quot; /&gt;
+ */
+----
+
+
+[quote, Brian W. Kernighan and P. J. Plaugher]
+Don’t comment bad code—rewrite it.

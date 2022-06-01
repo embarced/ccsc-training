@@ -1,0 +1,152 @@
+== Namensgebung
+
+* Verwenden von aufschlussreichen Namen
+* Desinformationen vermeiden, aussagekräftig
+* Verwenden von aussprechbaren und durchsuchbaren Namen
+* Keine ungarische Notation, keine Member-Präfixe
+* Klassennamen sind Subjektive, Methodennamen sind Verben
+* einheitliche Namen pro Konzept
+* nicht das gleiche Wort für unterschiedliche Zwecke
+* aussagekräftige Kontexte
+
+.Aussagekräftige Namen
+```java
+int d; // elapsed time in days
+
+int elapsedTimeInDays;
+int daysSinceCreation;
+int daysSinceModification;
+int fileAgeInDays
+```
+
+.Intention ausdrücken
+```java
+public List<int[]> getThem() {
+    List<int[]> list1 = new ArrayList<int[]>();
+    for (int[] x : theList)
+        if (x[0] == 4)
+            list1.add(x);
+    return list1;
+}
+
+public List<Cell> getFlaggedCells() {
+    List<Cell> flaggedCells = new ArrayList<Cell>();
+    for (Cell cell : gameBoard)
+        if (cell.isFlagged())
+            flaggedCells.add(cell);
+    return flaggedCells;
+}
+```
+
+.Desinformation vermeiden
+```java
+int a = l;
+if ( O == l )
+    a = O1;
+else
+    l = 01;
+```
+
+.Bedeutungsvolle Unterscheidung
+```java
+public static void copyChars(char a1[], char a2[]) {
+    for (int i = 0; i < a1.length; i++) {
+	    a2[i] = a1[i];
+    }
+}
+```
+
+.Aussprechbare Name
+```java
+class DtaRcrd102 {
+    private Date genymdhms;
+    private Date modymdhms;
+    private final String pszqint = "102";
+    /* ... */
+}
+
+class Customer {
+    private Date generationTimestamp;
+    private Date modificationTimestamp;;
+    private final String recordId = "102";
+    /* ... */
+}
+```
+
+.Suchbare Namen
+```java
+for (int j = 0; j < 34; j++) {
+	s += (t[j] * 4) / 5;
+}
+
+int realDaysPerIdealDay = 4;
+const int WORK_DAYS_PER_WEEK = 5;
+int sum = 0;
+for (int j=0; j < NUMBER_OF_TASKS; j++) {
+    int realTaskDays = taskEstimate[j] * realDaysPerIdealDay;
+    int realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);
+    sum += realTaskWeeks;
+}
+```
+
+.Encoding in Namen vermeiden (Memberpräfix)
+```java
+public class Part {
+    private String m_dsc; // The textual description
+
+    void setName(String name) {
+	    m_dsc = name;
+    }
+}
+
+public class Part {
+    String description;
+
+    void setDescription(String description) {
+        this.description = description;
+    }
+}
+```
+
+.Hungarian Notation vermeiden
+```java
+// name not changed when type changed!
+PhoneNumber phoneString;
+
+PhoneNumber phone;
+```
+
+Aussagekräfige Klassennamen:
+
+* Zusammengesetzte Namen (Nominalphrase)
+* Customer, WikiPage, Account, AddressParser
+* Zu vermeiden: `Manager, Processor, Data, Info`
+
+Aussagekräfige Methodennamen
+
+* Verb, Verb Phrase
+** `postPayment, deletePage, save`
+
+```java
+string name = employee.getName();
+customer.setName("mike");
+if (paycheck.isPosted()) ...
+```
+
+Statische Factory-Methoden als "überladene"/alternative Konstruktoren:
+
+```java
+Complex fulcrumPoint = Complex.FromRealNumber(23.0);
+// vs.
+Complex fulcrumPoint = new Complex(23.0);
+```
+
+Ein Name pro Konzept
+
+* fetch,  retrieve, get
+* Controller, Manager, Driver (verwirrend)
+
+Bedeutungsvoller Zusammenhang
+
+* `firstName, lastName, street, houseNumber, city, state, zipcode`
+* `addrFirstName, addrLastName, addrState` (gleich eine Klasse Adresse verwenden)

@@ -1,0 +1,77 @@
+= (Objektorientierte) Konzepte und Prinzipien
+:sectnums:
+
+.Objektorientierte Konzepte
+[cols="1,5"]
+|===
+|Konzept |Beschreibung
+
+|Vererbung
+|
+
+|Polymorphie
+|
+
+| Abstraktion
+|
+
+|Kapselung
+|
+
+|===
+
+
+.Grundsätze für wiederverwendbare objektorientierte Entwürfe
+[cols="1,5"]
+|===
+|Grundsatz |Beschreibung
+
+|1.
+|Programmiere auf eine Schnittstelle hin, nicht auf eine Implementierung.
+
+|2.
+|Ziehe Objektkomposition der Klassenvererbung vor.
+
+|===
+
+.Prinzipien
+[cols="1,5"]
+|===
+|Prinzip |Beschreibung
+
+|KISS
+|
+
+|DRY
+|
+
+|YAGNI
+|
+
+|POLS
+|
+
+|Minimum Assumption
+|
+
+|SRP
+|
+
+|OCP
+|
+
+|LSP
+|
+
+|ISP
+|
+
+|DIP
+|
+
+|Demeter
+|
+
+|
+|
+|===
