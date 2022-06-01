@@ -1,4 +1,5 @@
 = Cheatsheet
+:sectnums:
 
 == IntelliJ Shortcuts
 
