@@ -1,6 +1,9 @@
 package ccsc.refactoring.badtelefon;
 
+<<<<<<< HEAD
 import org.assertj.core.api.Assertions;
+=======
+>>>>>>> temp
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,33 +11,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ZeitpunktTest {
 
-    Zeitpunkt zeitpunkt;
+    private Zeitpunkt zeitpunkt;
 
     @BeforeEach
     void setUp() {
-        this.zeitpunkt = new Zeitpunkt(10, 30);
+        zeitpunkt = new Zeitpunkt(10, 30);
     }
 
     @Test
-    void can_create_a_Zeitpunkt() {
+    void kann_Zeitpunkt_erzeugen() {
         assertNotNull(zeitpunkt);
+        assertEquals(10, zeitpunkt.getStunde());
     }
 
     @Test
     void isMondschein() {
-        Zeitpunkt zeitpunkt1 = new Zeitpunkt(6, 0);
-        Assertions.assertThat(zeitpunkt1.isMondschein()).isTrue();
-    }
-
-    @Test
-    void isNotMondschein() {
-        Zeitpunkt zeitpunkt = new Zeitpunkt(12, 0);
-        Assertions.assertThat(zeitpunkt.isMondschein()).isFalse();
-    }
-
-    @Test
-    void is_Mondschein_Grenzfall() {
-        Zeitpunkt zeitpunkt = new Zeitpunkt(18, 0);
-        Assertions.assertThat(zeitpunkt.isMondschein()).isFalse();
+        assertTrue(new Zeitpunkt(8, 0).isMondschein());
+        assertFalse(new Zeitpunkt(10, 0).isMondschein());
+        assertFalse(new Zeitpunkt(18, 0).isMondschein());
     }
 }

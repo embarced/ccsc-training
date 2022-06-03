@@ -1,0 +1,433 @@
+= Code Smells
+:sectnums:
+
+== Aus dem Refactoring-Buch
+
+.Code Smells aus dem Refactoring Buch
+[cols="2,5a,3a"]
+|===
+|Code Smell |Beschreibung |Refactoring
+
+|Duplicated Code
+|Häufigster und schlimmster Gestank
+
+Der gleiche Ausdruck reicht
+
+Copy-Paste Gestank
+
+|Extract Method +
+Extract Class +
+Pull Up Method +
+Form Template Method +
+Substitute Algorithm +
+
+|Long Method
+|* Überbleibsel aus prozeduraler Programmierung
+* OO Code besteht oft aus wenigen Zeilen
+* Alle Zeilen einer Methode auf gleichem Abstraktionsniveau
+* Methode sollte nur eine Aufgabe erfüllen
+* Aufgabe sollte sofort aus dem Namen erkennbar sein
+
+|Extract Method +
+Replace Temp with Query +
+Replace Method with Method Object +
+Decompose Conditional +
+
+|Large Class
+|Kennzeichen: Viele Instanzvariablen oder Methoden
+
+Enthält häufig auch doppelten Code
+
+|Extrakt Class +
+Extrakt Subclass +
+Extrakt Interface +
+
+|Long Parameter List
+|C Style Parameterlisten
+
+Nicht mehr als 7 Parameter (vergleiche Steve McConnell)
+
+|Replace Parameter with Method +
+Preserve Whole Object +
+Introduce Parameter Object +
+
+
+|Divergent Change (Auseinanderlaufende Änderungen)
+|Eine Klasse muss für Änderungen differenziert verändert werden
+
+Eine Änderung „streut“ in viele Methoden
+
+Häufig Anzeichen für zwei Klassen in einer
+
+|Extract Class
+
+
+|Shotgun Surgery (Schrotflinten Operation)
+|Gegenteil von Divergent Change
+
+Für eine Änderung müssen mehrere Klassen angefaßt werden
+Ideal: Eine Änderung, eine Klasse
+
+|Move Method +
+Move Field +
+Inline Class +
+
+
+|Feature Envy (Neid)
+|Eine Methode benutzt hauptsächlich Daten anderer Klassen
+
+Es gehört zusammen, was zusammen geändert wird
+
+Es gibt Ausnahmen aus dem Pattern Bereich
+z.B. Strategie oder Besucher
+
+|Move Method +
+Extract Method +
+
+
+|Data Clumps
+|Daten, die oft zusammen als Attribute oder Parameter auftauchen
+
+Neue Klassen können Verantwortlichkeiten übernehmen
+
+„Data items tend to be like children; they enjoy hanging around in groups together“ [Martin Fowler]
+
+|Extract Class +
+Introduce Parameter Object +
+Preserve Whole Object +
+
+
+|Primitive Obsession
+|Abneigung gegen das Anlegen kleiner Klassen und Objekte
+
+Verwendung viele primitiver Datentypen
+
+Klassen eine Chance geben
+
+|Extract Class +
+Introduce Parameter Object +
+Replace Type Code with Class/Subclasses/State/Strategy +
+Replace Array with Object +
+Replace Data Value with Object +
+
+|Switch Statements
+|Der gleich Switch kommt oft mehrfach vor
+
+Guter objektorientierter Code enthält nur wenige switches
+
+Häufig ist Polymorphie besser geeignet
+
+|Replace Type Code with Subclasses +
+Replace Type Code with State/Strategie +
+Replace Conditional with Polymorphism +
+Replace Parameter with Explicit Methods +
+
+
+|Parallel Inheritance Hierarchies
+|Spezialfall der Shotgun Surgery
+
+Eine Subklasse einer Hierarchie wird immer zusammen mit einer Subklasse einer anderen Hierarchie angelegt
+
+|Move Field +
+Move Method +
+
+
+|Lazy Class
+|Klasse, die keine Verantwortlichkeiten (mehr) hat
+
+Unnütze Klasse für spätere Erweiterungen
+
+Oft Ergebnis vorheriger Refactorings
+
+|Collapse Hierarchy +
+Inline Class +
+
+
+|Speculative Generality
+|Sehr verführerischer Code Smell
+
+„Das könnte man später mal brauchen“
+
+Code für spätere eventuelle Erweiterungen
+
+YAGNI („You Aren‘t Going to Need It“)
+
+|Collapse Hierarchy +
+Inline Class +
+Remove Parameter +
+Rename Method +
+
+
+|Temporary Field
+|Sowohl in Instanzvariablen als auch lokalen Variablen
+
+Verringern Lesbarkeit des Codes
+
+Gaukeln aber gleichzeitig Verständnis vor
+
+Verhindert oft weitere Refactorings
+
+|Extract Class +
+Introduce Null Object +
+
+
+|Message Chains
+|Durchhangeln über mehrere Objekte und get-Methoden
+a.getB().calculateD(x).info(y).id()
+
+Kopplung auf Methodenebene
+
+Ausnahmen:
+Fluent/Functional APIs (Methoden geben immer API Objekte zurück)
+Berechnungsketten über Monaden wie java.util.Optional<T>
+
+|Hide Delegate +
+Extract Method und Move Method +
+
+
+|Middle Man
+|Übertriebene Delegation
+
+Klassen ohne eigene Verantwortlichkeit, die fast nur delegieren
+
+|Remove Middle Man +
+Inline Method +
+Replace Delegation with Inheritance +
+
+
+|Inappropriate Intimacy (Unangebrachte Intimität)
+|Klassen, die zu stark zusammenarbeiten / kuscheln
+Classes spend too much time delving in each others‘ private parts.
+
+Ergebnis häufiger Delegation
+
+|Move Method / Field +
+Change Bidirectional Association to Unidirectional +
+Extract Class +
+Hide Delegate +
+Replace Delegation with Inheritance +
+
+
+|Alternative Classes with Different Interfaces
+|Klassen und Methoden bieten die gleiche Funktionalität unter verschiedenen Namen (Signaturen) an
+```java
+array.length
+List::size
+File::length
+Stream::count()
+```
+|Rename Method +
+Move Method +
+Extract Superclass +
+
+
+|Incomplete Library Class
+|Fremde Bibliotheken, die man selbst nicht ändern kann
+
+|Introduce Foreign Method +
+Introduce Local Extension +
+
+
+
+|Data Class
+|Klassen die nur Felder, Getter und Setter besitzen
+z.B. Value Objects
+
+Verallgemeinerung von Lazy Class (reine Datenhalter)
+
+Die Klassen sollten irgendwann Verantwortung übernehmen
+
+|Remove Setting Method +
+Move Method +
+Hide Method +
+
+
+|Refused Bequest
+|Subklassen, die fast nichts ihrer Vorfahren benutzen
+
+Subklassen, die alles ihrer Vorfahren überschreiben
+
+|Push Down Method / Field +
+Replace Inheritance with Delegation +
+
+
+|Comments
+|Missbrauch von Kommentaren als Deodorant
+
+Kommentare stehen oft dort, wo der Code schlecht ist
+
+|Extract Method +
+Rename Method +
+Introduce Assertion +
+
+|===
+
+== Weitere üble Gerüche
+
+Quellen:
+
+Michael Inden: "Der Weg zum Java-Profi" +
+Jeff Atwood (Autor der Webseite Stack Overflow), siehe http://www.codinghorror.com/blog/2006/05/code-smells.html[codinghorror.com]
+
+
+.Weitere Code Smells
+[cols="2,5a,3a"]
+|===
+|Code Smell |Beschreibung |Refactoring
+
+|Magic Numbers
+|Zahlenliterale mit fachlicher Bedeutung
+
+if (stunde < 9 \|\| stunde > 18) {…}
+
+preis = minuten * 0.69;
+
+|Konstante extrahieren
+
+
+|Mutability
+|Veränderbare Instanzen
+
+Zustand nicht immer klar, Invarianten müssen geprüft werden
+
+Nicht Thread-safe
+
+Schlechtere Instanzwiederverwendung, mehr Aufwand beim Caching
+
+|Make class immutable
+
+
+|Unhandled Exceptions
+|Leere catch-Blöcke, Verschlucken der Exception
+
+Generiert von IDEs (einfach nur e.printStacktrace())
+
+|
+
+|Exceptions zur Steuerung des Kontrollflusses
+|Exceptions sind für Ausnahmefälle gedacht
+
+Das Werfen und Erzeugen von Exceptions ist teuer
+
+JVM Laufzeitstack ist nicht optimiert für StackTrace Erzeugung
+
+Exceptions nicht für regulären Kontrollfluss verwenden
+
+Unter Umständen Exceptions wiederverwenden
+Achtung: StackTrace wird nicht automatisch aktualisiert
+Möglich per Throwable#fillInStackTrace()
+Beispiel: Parseabbruch bei Push Parsing API (SAX)
+|
+
+|Conditional Complexity
+|Ähnlich zu Code Smell "Switch Statement"
+
+Komplizierte bedingte Anweisungen (if-else, geschachtelt)
+
+Unleserliche Bedingungsprüfungen
+
+|Decompose Conditional +
+Consolidate Conditional Expression +
+Replace Type Code with Subclasses +
+Replace Type Code with State/Strategie +
+Replace Conditional with Polymorphism +
+Replace Parameter with Explicit Methods +
+
+
+|Combinatorial Explosion
+|Spezialfall von Duplicated Code
+
+Viele Codestellen, die fast das gleiche tun
+
+Kleine Variationen in Daten oder Verhalten
+
+|Extract Method +
+Extract Class +
+Pull Up Method +
+Form Template Method +
+Substitute Algorithm +
+
+|Type Embedded in Name
+|Namen von Methoden oder Variablen enthalten Datentypen
+
+Redundante Information
+
+Name muss geändert werden, wenn sich der Datentyp ändert
+
+Deshalb: Fachlich/logisch sprechende Bezeichner
+for (File file: fileList) => for (File child: children)
+String text => String input
+List<File> files => List<File> result
+
+|Rename
+
+
+|Uncommunicative Name
+|Beschreibt der Name, was die Methode tut?
+
+Kann ein anderer Entwickler anhand des Namens den Sinn der Funktion erkennen, ohne Erklärung?
+
+Gilt für alle Bezeichner (Konstanten, Variablen, Felder, Typen…)
+
+|Rename
+
+|Inconsistent Names
+|Projektweit keine einheitliche Begrifflichkeit festgelegt
+
+Vermischung von Englisch/Deutsch
+
+Falsche Übersetzung von Fachbegriffen
+
+Unterschiedliche Begriffe/Übersetzungen für den gleichen Ausdruck
+
+|Rename
+
+
+|Dead Code
+|Nicht mehr verwendeter Code sollte schonungslos gelöscht werden
+
+Stattdessen Versionsverwaltungssystem nutzen (ggf. taggen)
+
+Auch nicht verwendeter Code müsste gepflegt und getestet werden
+
+Keinesfalls auskommentieren, auch nicht Tests!
+Auskommentierter Code bricht beim geringsten refactoring unbemerkt
+
+|Collapse Hierarchy +
+Inline Class +
+Remove Parameter +
+
+|Oddball Solution (Schrullige Lösung)
+|Nur ein Weg, wie man das gleiche Problem im Code löst
+
+Oft ein Zeichen für (schlecht) duplizierten Code
+
+|Extract Method +
+Extract Class +
+Pull Up Method +
+Form Template Method +
+Substitute Algorithm +
+
+
+|Indecent Exposure (Unangebrachte Offenlegung)
+|Klassen, die unnötigerweise Interna veröffentlichen
+
+Verletzung der Kapselung
+
+Klassen sollten möglichst viel verstecken und nur die Schnittstelle öffentlich machen
+
+|Self Encapsulate Field +
+Hide Method +
+
+
+|Solution Sprawl (Lösungs-Ausbreitung)
+|wenn man mehrere Klassen braucht, um überhaupt etwas sinnvolles zu machen
+
+Verletzung von KISS (keep it simple and stupid)
+
+|Remove Middle Man +
+Pull up +
+Move +
+
+
+|===

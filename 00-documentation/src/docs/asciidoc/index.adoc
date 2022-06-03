@@ -1,0 +1,12 @@
+:toc:
+
+= Begleitendes Material zum Training *Clean Code & Software Craftsmanship*
+:sectnums:
+
+include::cleancode/index.adoc[leveloffset=+1]
+
+include::prinzipien.adoc[leveloffset=+1]
+
+include::code_smells.adoc[leveloffset=+1]
+
+include::cheatsheet.adoc[leveloffset=+1]
