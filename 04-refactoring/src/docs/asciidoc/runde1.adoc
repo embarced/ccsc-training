@@ -1,0 +1,32 @@
+== Refactoring Runde 1
+
+=== Data Clump
+
+1. Methode `account()` markieren und ^ + T für Refactor this => Introduce Parameter Object.
+
+2. Guten Namen finden, wir starten mal mit `Zeitpunkt`, könnte alternativ auch `Uhrzeit` oder ähnliches sein. Die Frage ist, warum wir nicht eine vorhandene Klasse z. B. `java.util.Date` verwenden? Da haben wir keine Möglichkeit die Implementierung zu erweitern.
+
+2. Immutability erstrebenswert, kurz zu Effective Java Folien abbiegen und Klasse immutable implementieren. Kurz Records als einfachere Alternative zeigen.
+
+4. Nicht verwendetete Membervariable `minute` ignorieren wir an dieser Stelle einfach (Spekulative Generalität)
+
+5. Test schreiben (Quickfix auf Klassenname und Test anlegen), der tut zwar noch nicht viel, ausser einen Zeitpunkt zu erzeugen, könnte aber in Zukunft nützlich sein.
+
+6. Extract Method `isMondschein()`, ab Kommentar markieren und Refactoring aufrufen (Option + Command + M). Sieht aber komisch aus, nimmt die Boolean-Variable mondschein als Parameter mit rein.
+
+7. Neuer Versuch, `boolean mondschein ...` mit einbeziehen, aber das geht nicht, weil `double preis()` im Weg ist.
+
+8. Vertauschen der beiden lokalen Variablen und dann wiederholen.
+
+9. Neue Methode `isMondschein()` wollen wir aufräumen, vorher aber am liebsten erstmal einen Test schreiben. Geht bei privaten Methoden nicht so gut. Aber wir haben so eine Art Feature Envy, weil wir extra den Zeitpunkt mit in den Methodenaufruf übergeben. Besser wäre, es direkt auf dem Objekt `Zeitpunkt` aufzurufen, dazu müssen wir `isMondschein()` nach Zeitpunkt verschieben.
+
+10. F6 auf Methode aufrufen, im Wizard auf public ändern. Anschließend kann man wunder Tests für `Zeitpunkt.isMondschein()` schreiben (Quickfix auf Methodennamen).
+
+11. `isMondschein()` refactoren:
+* Kommentar rausschmeißen
+* statt temporäre boolean-Variable zuzuweisen, direkt mit `return` wieder zurückliefern.
+* statt `if` direkt
+
+12. Magic Number ersetzen
+
+13. Inline-Variable `isMondschein()` in der Klasse ...

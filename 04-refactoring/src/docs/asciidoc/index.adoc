@@ -1,0 +1,17 @@
+:toc:
+
+= Refactoring BadTelefon
+
+:sectnums:
+
+include::code-smells-badtelefon.adoc[]
+
+include::runde1.adoc[]
+
+include::runde2.adoc[]
+
+include::runde3.adoc[]
+
+include::runde4.adoc[]
+
+include::runde5.adoc[]
