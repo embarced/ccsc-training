@@ -1,9 +1,5 @@
 package ccsc.refactoring.badtelefon;
 
-<<<<<<< HEAD
-import org.assertj.core.api.Assertions;
-=======
->>>>>>> temp
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

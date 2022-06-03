@@ -11,6 +11,7 @@ public class PrivatTarif extends Tarif {
         else
             return 1.99;
     }
+
     protected int getNettoDauer(int gespraechsdauer) {
         return Math.max(0, gespraechsdauer - 1);
     }

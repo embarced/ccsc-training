@@ -7,8 +7,7 @@ public class BusinessTarif extends Tarif {
     protected double getPreisProMinute(Zeitpunkt zeitpunkt) {
         if (zeitpunkt.isMondschein()) {
             return 0.79;
-        }
-        else {
+        } else {
             return 1.29;
         }
     }
