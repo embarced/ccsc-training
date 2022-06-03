@@ -2,6 +2,7 @@ package ccsc.solid.srp.webserviceclient;
 
 public class Event {
     private String speaker;
+    private String title;
 
     public String getTitle() {
         return title;
@@ -11,7 +12,6 @@ public class Event {
         this.title = title;
     }
 
-    private String title;
 
     public String getSpeaker() {
         return speaker;

@@ -14,7 +14,7 @@ public class UserMapper {
     public UserMapper() {
     }
 
-    List<Event> handleResponse(HttpClient client, HttpRequest request) throws IOException, InterruptedException {
+    public List<Event> handleResponse(HttpClient client, HttpRequest request) throws IOException, InterruptedException {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
