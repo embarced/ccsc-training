@@ -1,0 +1,64 @@
+== Code Smells BadTelefon
+
+=== Klassendiagramm
+
+[plantuml, target=diagram-classes, format=png]
+....
+@startuml
+!pragma layout smetana
+
+top to bottom direction
+'skinparam handwritten true
+
+class KundeTest {
+    void privatTarif()
+    void businessTarif()
+    void profiTarif()
+}
+
+class Kunde {
+double gebuehr
+public double account()
+}
+
+class Tarif {
+public static final int PRIVAT
+public static final int BUSINESS
+public static final int PROFI
+}
+
+KundeTest -- Kunde
+Kunde -- Tarif
+
+@enduml
+....
+
+
+=== Code Smells
+
+.Code Smells aus dem Refactoring Buch
+[cols="5a,2,3a"]
+|===
+|Code Smell |Wo? |Wann Refactoring?
+
+| Long Method (`account()`)
+| Kunde:11
+| 01, 02
+
+|
+|
+|
+
+|
+|
+|
+
+|
+|
+|
+
+|
+|
+|
+
+|===

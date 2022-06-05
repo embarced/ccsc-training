@@ -1,0 +1,13 @@
+:toc:
+
+= Clean Code
+
+:sectnums:
+
+include::meaningful_names.adoc[]
+
+include::functions.adoc[]
+
+include::classes.adoc[]
+
+include::comments.adoc[]

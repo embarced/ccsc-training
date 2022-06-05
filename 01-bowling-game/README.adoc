@@ -1,0 +1,1 @@
+Leeres Projekt als Start für die Bowling Game Kata.

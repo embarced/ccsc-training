@@ -1,0 +1,9 @@
+:toc:
+
+= TDD mit Bowling Game Kata
+
+:sectnums:
+
+include::bowling-game-kata.adoc[]
+
+include::advanced_testing.adoc[]
