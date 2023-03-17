@@ -9,9 +9,14 @@ public abstract class Tarif {
 
 	int tarif = 0;
 
-	public Tarif(int tarif) {
-		this.tarif = tarif;
+	public final double berechneGebuehr(int minuten, Zeitpunkt zeitpunkt) {
+		// minuten * preis
+		return getNettoMinuten(minuten) * getPreis(zeitpunkt);
 	}
 
-	public abstract double berechneGebuehr(int minuten, Zeitpunkt zeitpunkt);
+	protected abstract double getPreis(Zeitpunkt zeitpunkt);
+
+	protected int getNettoMinuten(int minuten) {
+		return minuten;
+	}
 }
