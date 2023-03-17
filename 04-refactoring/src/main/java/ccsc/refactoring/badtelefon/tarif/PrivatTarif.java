@@ -9,8 +9,7 @@ public class PrivatTarif extends Tarif {
 
     @Override
     protected int getNettoMinuten(int minuten) {
-        minuten = minuten - FREIMINUTE;
-        return minuten < 0 ? 0 : minuten;
+        return Math.max(minuten - FREIMINUTE, 0);
     }
 
     @Override

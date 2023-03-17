@@ -16,7 +16,7 @@ public class Kunde {
 	}
 
 	public void account(int minuten, Zeitpunkt zeitpunkt) {
-		this.gebuehr = getGebuehr() + tarif.berechneGebuehr(minuten, zeitpunkt);
+		this.gebuehr = gebuehr + tarif.berechneGebuehr(minuten, zeitpunkt);
 	}
 
 	public double getGebuehr() {
