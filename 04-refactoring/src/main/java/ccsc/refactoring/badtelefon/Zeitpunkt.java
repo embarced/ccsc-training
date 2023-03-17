@@ -2,7 +2,7 @@ package ccsc.refactoring.badtelefon;
 
 import java.util.StringJoiner;
 
-public class Zeitpunkt {
+public final class Zeitpunkt {
     public static final int MONDSCHEINZEIT_ENDE = 9;
     private final int stunde;
     private final int minute;

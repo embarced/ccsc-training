@@ -4,15 +4,12 @@ import ccsc.refactoring.badtelefon.tarif.*;
 
 public class Kunde {
 	private double gebuehr = 0.0;
-	private final Tarif tarif;
+	private final TarifArt tarif;
 
 	@Deprecated(forRemoval = true)
 	public Kunde(TarifArt tarifArt) {
-		tarif = switch (tarifArt) {
-			case PRIVAT -> new PrivatTarif();
-			case BUSINESS -> new BusinessTarif();
-			case PROFI -> new ProfiTarif();
-		};
+		tarif = tarifArt;
+		//tarif = Tarif.createTarif(tarifArt);
 	}
 
 	public void account(int minuten, Zeitpunkt zeitpunkt) {
@@ -23,7 +20,4 @@ public class Kunde {
 		return gebuehr;
 	}
 
-	public Tarif getTarif() {
-		return tarif;
-	}
 }
