@@ -1,5 +1,7 @@
 package ccsc.refactoring.badtelefon;
 
+import ccsc.refactoring.badtelefon.tarif.Tarif;
+import ccsc.refactoring.badtelefon.tarif.TarifArt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +15,9 @@ public class KundeTest {
 
     @BeforeEach
     void setUp() {
-        privatKunde = new Kunde(Tarif.PRIVAT);
-        businessKunde = new Kunde(Tarif.BUSINESS);
-        profiKunde = new Kunde(Tarif.PROFI);
+        privatKunde = new Kunde(TarifArt.PRIVAT);
+        businessKunde = new Kunde(TarifArt.BUSINESS);
+        profiKunde = new Kunde(TarifArt.PROFI);
     }
 
     @Test

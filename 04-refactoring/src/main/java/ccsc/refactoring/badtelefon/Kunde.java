@@ -1,19 +1,17 @@
 package ccsc.refactoring.badtelefon;
 
-import ccsc.refactoring.badtelefon.tarif.BusinessTarif;
-import ccsc.refactoring.badtelefon.tarif.PrivatTarif;
-import ccsc.refactoring.badtelefon.tarif.ProfiTarif;
+import ccsc.refactoring.badtelefon.tarif.*;
 
 public class Kunde {
 	private double gebuehr = 0.0;
-	private Tarif tarif;
+	private final Tarif tarif;
 
-	public Kunde(int tarifArt) {
+	@Deprecated(forRemoval = true)
+	public Kunde(TarifArt tarifArt) {
 		tarif = switch (tarifArt) {
-			case Tarif.PRIVAT -> new PrivatTarif();
-			case Tarif.BUSINESS -> new BusinessTarif();
-			case Tarif.PROFI -> new ProfiTarif();
-			default -> throw new RuntimeException("Tarifart ist nicht gültig: " + tarifArt);
+			case PRIVAT -> new PrivatTarif();
+			case BUSINESS -> new BusinessTarif();
+			case PROFI -> new ProfiTarif();
 		};
 	}
 
@@ -27,9 +25,5 @@ public class Kunde {
 
 	public Tarif getTarif() {
 		return tarif;
-	}
-
-	public void setTarif(Tarif tarif) {
-		this.tarif = tarif;
 	}
 }

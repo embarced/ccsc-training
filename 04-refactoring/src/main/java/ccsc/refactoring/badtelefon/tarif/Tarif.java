@@ -1,4 +1,6 @@
-package ccsc.refactoring.badtelefon;
+package ccsc.refactoring.badtelefon.tarif;
+
+import ccsc.refactoring.badtelefon.Zeitpunkt;
 
 public abstract class Tarif {
 	public final static int PRIVAT = 0;

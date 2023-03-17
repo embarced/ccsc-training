@@ -1,6 +1,5 @@
 package ccsc.refactoring.badtelefon.tarif;
 
-import ccsc.refactoring.badtelefon.Tarif;
 import ccsc.refactoring.badtelefon.Zeitpunkt;
 
 public class BusinessTarif extends Tarif {
