@@ -1,44 +1,26 @@
 package ccsc.refactoring.badtelefon;
 
 public class Kunde {
-	double gebuehr = 0.0;
-	Tarif tarif;
+	private double gebuehr = 0.0;
+	private Tarif tarif;
 
 	public Kunde(int tarifArt) {
-		this.tarif = new Tarif(tarifArt);
+		this.setTarif(new Tarif(tarifArt));
 	}
 
 	public void account(int minuten, Zeitpunkt zeitpunkt) {
-		double preis = 0;
-
-		// Gespraechspreis ermitteln
-		switch (tarif.tarif) {
-		case Tarif.PRIVAT:
-			minuten = minuten - 1;
-			minuten = minuten < 0 ? 0 : minuten;
-			if (zeitpunkt.isMondschein())
-				preis = minuten * 0.69;
-			else
-				preis = minuten * 1.99;
-			break;
-
-		case Tarif.BUSINESS:
-			if (zeitpunkt.isMondschein())
-				preis = minuten * 0.79;
-			else
-				preis = minuten * 1.29;
-			break;
-
-		case Tarif.PROFI:
-			preis = minuten * 0.69;
-			break;
-
-		}
-
-		gebuehr += preis;
+		this.gebuehr = getGebuehr() + tarif.berechneGebuehr(minuten, zeitpunkt);
 	}
 
 	public double getGebuehr() {
 		return gebuehr;
+	}
+
+	public Tarif getTarif() {
+		return tarif;
+	}
+
+	public void setTarif(Tarif tarif) {
+		this.tarif = tarif;
 	}
 }
