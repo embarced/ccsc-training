@@ -1,5 +1,6 @@
 package ccsc.refactoring.badtelefon;
 
+import ccsc.refactoring.badtelefon.tarif.Tarif;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

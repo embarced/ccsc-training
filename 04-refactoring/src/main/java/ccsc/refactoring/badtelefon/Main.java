@@ -1,5 +1,7 @@
 package ccsc.refactoring.badtelefon;
 
+import ccsc.refactoring.badtelefon.tarif.Tarif;
+
 public class Main {
 	public static void main(String args[]) {
 		Kunde k1 = new Kunde(Tarif.PROFI);
