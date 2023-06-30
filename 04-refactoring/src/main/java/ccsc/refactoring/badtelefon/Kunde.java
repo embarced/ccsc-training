@@ -1,13 +1,14 @@
 package ccsc.refactoring.badtelefon;
 
 import ccsc.refactoring.badtelefon.tarif.Tarif;
+import ccsc.refactoring.badtelefon.tarif.TarifTyp;
 
 public class Kunde {
 	private double gebuehr = 0.0;
-	private Tarif tarif;
+	private TarifTyp tarif;
 
-	public Kunde(int tarifArt) {
-		this.tarif = Tarif.instanceOf(tarifArt);
+	public Kunde(TarifTyp tarif) {
+		this.tarif = tarif; //Tarif.instanceOf(tarif);
 	}
 
 	public void bucheGespraech(int minuten, Zeitpunkt zeitpunkt) {
