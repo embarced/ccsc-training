@@ -10,9 +10,11 @@ public enum TarifTyp {
         }
 
         @Override
-        protected int getNettoMinuten(int minuten) {
-            minuten = minuten - 1;
-            return minuten < 0 ? 0 : minuten;
+        /**
+         * Zieht eine Minute ab, gibt aber mindestens 0 zurück.
+         */
+        protected int getNettoMinuten(int bruttoMinuten) {
+            return Math.max(bruttoMinuten - 1, 0);
         }
 
     }, BUSINESS {
