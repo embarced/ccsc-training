@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>refactoring</artifactId>
+    <artifactId>06-functional</artifactId>
 
-    <name>Refactoring</name>
+    <name>Functional Java</name>
 
 </project>

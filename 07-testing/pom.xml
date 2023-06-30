@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>refactoring</artifactId>
+    <artifactId>07-testing</artifactId>
 
-    <name>Refactoring</name>
+    <name>Bessere (JUnit 5) Tests</name>
 
 </project>

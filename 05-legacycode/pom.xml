@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>05-functional</artifactId>
+    <artifactId>legacycode</artifactId>
 
-    <name>Functional Java</name>
+    <name>Legacy Code</name>
 
 </project>
