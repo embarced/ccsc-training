@@ -3,7 +3,9 @@ package ccsc.refactoring.badtelefon.tarif;
 import ccsc.refactoring.badtelefon.Zeitpunkt;
 
 public abstract class Tarif {
-	private static final Tarif PRIVAT = new Tarif() {
+	private static final Tarif PRIVAT =
+
+			new Tarif() {
 		@Override
 		public double berechneGespraechspreis(int minuten, Zeitpunkt zeitpunkt) {
 			minuten = minuten - 1;
