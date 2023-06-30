@@ -13,4 +13,10 @@
 
     <name>Refactoring und Legacy Code</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+        </dependency>
+    </dependencies>
 </project>
