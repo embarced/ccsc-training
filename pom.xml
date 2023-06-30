@@ -28,6 +28,7 @@
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <assertj-core.version>3.22.0</assertj-core.version>
         <mockito-junit-jupiter.version>4.5.1</mockito-junit-jupiter.version>
+        <approvaltests.version>18.6.1</approvaltests.version>
     </properties>
 
     <build>
@@ -75,6 +76,12 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-junit-jupiter</artifactId>
                 <version>${mockito-junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.approvaltests</groupId>
+                <artifactId>approvaltests</artifactId>
+                <version>${approvaltests.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
