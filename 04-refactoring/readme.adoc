@@ -4,14 +4,12 @@
 
 * Package: `ccsc.refactoring.badtelefon`
 * Startpunkt: `ccsc.refactoring.badtelefon.KundeTest`
-* Ziele
-** Code-Smells sammeln
-** Refactorings anwenden, um Code-Smells abzubauen
-** Einbau von einigen Design Patterns (Immutability, statische Fabrik-Methode, Strategie, Schablone-Methode)
 
-== Refactoring von Legacy-Code
+=== Aufgaben
+* Code-Smells sammeln
+* Refactorings anwenden, um Code-Smells abzubauen
+* Einbau von einigen Design Patterns (Immutability, statische Fabrik-Methode, Strategie, Schablone-Methode)
 
-* Package: `ccsc.legacy.badtelefon`
-* keine Tests vorhanden
-* zunächst Sicherheitsnetz aufspannen (Golden Master)
-* schwer testbaren, stark gekoppelten Code aufbrechen (Subclass To Test)
+== Refactoring von Legacy-Code (keine automatisierten Tests vorhanden)
+
+* siehe Projekt 05-legacycode

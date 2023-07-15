@@ -1,17 +1,16 @@
-= 04-Refactoring
-
-== Klassisches Refactoring mit vorhandenen Unit-Tests
-
-* Package: `ccsc.refactoring.badtelefon`
-* Startpunkt: `ccsc.refactoring.badtelefon.KundeTest`
-* Ziele
-** Code-Smells sammeln
-** Refactorings anwenden, um Code-Smells abzubauen
-** Einbau von einigen Design Patterns (Immutability, statische Fabrik-Methode, Strategie, Schablone-Methode)
+= 04 - Refactoring von Legacy Code
 
 == Refactoring von Legacy-Code
 
 * Package: `ccsc.legacy.badtelefon`
 * keine Tests vorhanden
+
+=== Aufgaben
+
 * zunächst Sicherheitsnetz aufspannen (Golden Master)
 * schwer testbaren, stark gekoppelten Code aufbrechen (Subclass To Test)
+* Teile rausziehen (Extract Method, Extract Class) und dafür Tests schreiben
+
+== Klassisches Refactoring mit vorhandenen Unit-Tests
+
+* siehe Projekt 04-refactoring
